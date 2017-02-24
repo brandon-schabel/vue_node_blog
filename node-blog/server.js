@@ -53,10 +53,15 @@ app.post('/deletePost/:id', (req, res) => {
   db.collection('post-collection').deleteOne({'_id':deleteId}, (err, result) => {
     console.log(result);
     assert.equal(null, err);
-    assert.equal(1, result.deletedCount);
+    //assert.equal(1, result.deletedCount);
   })
+})
 
-  app.post('/login', (req, res) => {
+app.post('/login', (req, res) => {
     console.log(req.body)
-  })
+
+    db.collection('user-collection').findOne({}, (err, result) =>{
+
+
+    })
 })

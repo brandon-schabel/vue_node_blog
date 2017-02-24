@@ -14,52 +14,10 @@
     <div>
         <div id="app" class="container">
             <app-header></app-header>
-
             <app-all-posts></app-all-posts>
             <app-new-post></app-new-post>
-            <!-- Display Post -->
-            <!--
-            
-            <div>
-                <button @click="getPosts()" class="btn btn-default">
-                Get Posts
-                </button>
-                <ul class="list-group">
-                    <li v-for="post in posts" class="list-group-item">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <h1>
-                                Title: {{post.postTitle}}
-                                </h1>
-                            </div>
-                            <div class="col-xs-6">
-                                Content: {{post.postContent}}
-                            </div>
-                            <div class="col-xs-3">
-                                <h3>User: {{post.username}}</h3>
-
-                                <div v-if="post.created_datetime">
-                                    Posted on: {{post.createdDatetime}}
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            -->
-            <!-- end display post -->
-
-            
-
-            <!--
-            <div>
-            <p>
-                Posts: {{posts}}
-            </p>
-            </div>
-            -->
+            <app-login-form></app-login-form>
         </div>
-        
     </div>
 </template>
 
@@ -72,6 +30,7 @@
     import Footer from './components/Shared/Footer.vue'
     import Post from './components/Post/Post.vue'
     import NewPost from './components/Post/NewPost.vue'
+    import LoginForm from './components/User/LoginForm.vue'
     export default {
         components: {
             //these are locally register components
@@ -79,7 +38,8 @@
             'app-post': Post,
             'app-header': Header,
             'app-footer': Footer,
-            'app-new-post': NewPost
+            'app-new-post': NewPost,
+            'app-login-form': LoginForm
         },
         methods: {
         }
