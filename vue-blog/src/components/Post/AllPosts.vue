@@ -4,6 +4,7 @@
         Get Posts
         </button>
         <ul class="list-group">
+            
             <li v-for="(post,index) in posts" class="list-group-item">
                 <div class="row">
                     <div class="col-xs-3">
