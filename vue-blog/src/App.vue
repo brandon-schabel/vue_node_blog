@@ -17,6 +17,7 @@
             <app-all-posts></app-all-posts>
             <app-new-post></app-new-post>
             <app-login-form></app-login-form>
+            <app-register-form></app-register-form>
         </div>
     </div>
 </template>
@@ -31,6 +32,7 @@
     import Post from './components/Post/Post.vue'
     import NewPost from './components/Post/NewPost.vue'
     import LoginForm from './components/User/LoginForm.vue'
+    import RegisterForm from './components/User/RegisterForm.vue'
     export default {
         components: {
             //these are locally register components
@@ -39,7 +41,8 @@
             'app-header': Header,
             'app-footer': Footer,
             'app-new-post': NewPost,
-            'app-login-form': LoginForm
+            'app-login-form': LoginForm,
+            'app-register-form': RegisterForm
         },
         methods: {
         }

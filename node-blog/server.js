@@ -58,10 +58,27 @@ app.post('/deletePost/:id', (req, res) => {
 })
 
 app.post('/login', (req, res) => {
+  /*
+    email = req.body.email
+    console.log(email)
     console.log(req.body)
+    console.log(db.collection('user-collection'))
+*/
+    /*db.collection('user-collection').findOne({'email': 'brandonschabel@yahoo.com'}, (err, result) => {
+      console.log(result)
+    }) */ 
 
-    db.collection('user-collection').findOne({}, (err, result) =>{
+    db.collection('user-collection').findOne({'email':req.body.email}, (err, result) =>{
+      console.log(result)
 
 
     })
+})
+
+app.post('/register', (req, res) => {
+  console.log(req.body)
+  db.collection('user-collection').insertOne(req.body, (err,result) =>{
+    console.log(result)
+  })
+  //db.collection('user-collection').insertOne({})
 })

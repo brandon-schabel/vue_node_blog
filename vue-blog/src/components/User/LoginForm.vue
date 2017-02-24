@@ -22,9 +22,9 @@
                             </div>
                             -->
                             <!-- Change this to a button or input when using this as a form -->
-                            <button class="btn btn-default">Login</button>
                         </fieldset>
                     </form>
+                    <button class="btn btn-default" @click="submitLogin()">Login</button>
                     <p>
                         {{userData.email}}
                         {{userData.password}}
@@ -39,7 +39,17 @@
     export default {
         methods: {
             submitLogin() {
-
+                var vm = this
+                console.log(this.userData)
+                this.axios.post('http://127.0.0.1:3000/login',vm.userData)
+                    //postTitle: vm.postData.postTitle,
+                    //postContent: vm.postData.postContent)
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
             }
         },
         data() {
