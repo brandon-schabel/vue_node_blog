@@ -1,20 +1,41 @@
 {
-  "name": "node-blog",
-  "version": "1.0.0",
-  "description": "",
+  "name": "vue-node-blog",
+  "version": "0.0.0",
+  "description": "Vue2 + Node Express based blog",
   "main": "server.js",
-  "dependencies": {
-    "body-parser": "^1.16.1",
-    "cors": "^2.8.1",
-    "ejs": "^2.5.6",
-    "mongodb": "^2.2.24",
-    "nodemon": "^1.11.0"
-  },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "author": "",
-  "license": "ISC"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brandon-schabel/vue_node_blog"
+  },
+  "keywords": [
+    "todo",
+    "in",
+    "memory",
+    "jwt",
+    "auth0"
+  ],
+  "author": "Brandon Schabel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/brandon-schabel/vue_node_blog"
+  },
+  "homepage": "",
+  "dependencies": {
+    "bcrypt": "^1.0.2",
+    "body-parser": "^1.6.5",
+    "compression": "^1.0.11",
+    "cors": "^2.4.1",
+    "dotenv": "^0.4.0",
+    "errorhandler": "^1.1.1",
+    "express": "^4.8.5",
+    "express-jwt": "^0.3.1",
+    "jsonwebtoken": "^5.0.1",
+    "lodash": "^2.4.1",
+    "mongodb": "^2.2.24",
+    "morgan": "^1.2.3"
+  }
 }

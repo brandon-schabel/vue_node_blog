@@ -42,6 +42,7 @@
             };
         },
         methods: {
+
             getPosts() {
                 var vm = this
                 this.axios.get('http://127.0.0.1:3000/getposts')
@@ -53,7 +54,13 @@
                 });
             },
             deletePost(id,index) {
-                this.axios.post('http://127.0.0.1:3000/deletePost/' + id)
+                const url = 'http://127.0.0.1:3000/api/protected/deletePost';
+                const params = {id:id}
+                const config = { headers: {
+                    Authorization: 'Bearer ' + window.sessionStorage.accessToken
+                }}
+                console.log(window.sessionStorage.accessToken);
+                this.axios.post(url, params, config)
                 .then(function (response) {
                     console.log(response);
                 }).catch(function(error) {

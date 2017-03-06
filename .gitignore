@@ -1,2 +1,8 @@
-node_modules
+node_modules/
+.env
+protected-routes.js
+anonymous-routes.js
+statusError.js
+user-routes.js
+dbconfig.js
 config.js

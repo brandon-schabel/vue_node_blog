@@ -46,6 +46,7 @@
                     //postContent: vm.postData.postContent)
                 .then(function (response) {
                     console.log(response);
+                    window.sessionStorage.accessToken = response.data.id_token
                 })
                 .catch(function (error) {
                     console.log(error);
