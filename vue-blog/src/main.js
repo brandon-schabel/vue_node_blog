@@ -3,10 +3,18 @@ import App from './App.vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import VueResource from 'vue-resource';
+import VueRouter from 'vue-router';
+import { routes }from './routes';
 //import { routes } from './routes'
 
 Vue.use(VueAxios, axios);
+Vue.use(VueRouter);
 //Vue.use(VueRouter);
+
+const router = new VueRouter( {
+  routes:routes,
+  mode: 'history'//this will remove the hashtag in the routing
+});
 
 /*
 const router = new VueRouter({
@@ -24,5 +32,6 @@ then in the request if you need to req from a diff route of that url
 //Vue.http.options.root = 'http://127.0.0.1:5000/';
 new Vue({
   el: '#app',
+  router: router,
   render: h => h(App)
 })

@@ -65,7 +65,7 @@ app.use('/api/protected', jwtCheck);
 
 
 //add protection
-app.post('/newPost', (req, res) => {
+app.post('/api/protected/newPost', (req, res) => {
   
   console.log(req)
   post_collection.save(req.body, (err,result)=> {

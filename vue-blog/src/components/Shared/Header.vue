@@ -16,8 +16,9 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="">Home</a></li>
-                    <li><a href="">Login</a></li>
+                    <li><router-link to="/">Home</router-link></li>
+                    <li><router-link to="/login">Login</router-link></li>
+                    <li><router-link to="/user/10">User</router-link>
                     <li><a href="">Register</a></li>
                     <li><a href="">All Posts</a></li>
                     <li><a href="">New Post</a></li>

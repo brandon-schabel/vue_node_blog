@@ -13,11 +13,16 @@
     -->
     <div>
         <div id="app" class="container">
+            <!-- router-view shows the currently selected route -->
             <app-header></app-header>
+            <router-view></router-view>
+            
+            <!--
             <app-all-posts></app-all-posts>
             <app-new-post></app-new-post>
             <app-login-form></app-login-form>
             <app-register-form></app-register-form>
+            -->
         </div>
     </div>
 </template>
