@@ -11,7 +11,7 @@
     export default {
         data() {
             id: this.$route.params.id
-        }
+        },
         methods: {
             navigateToHome() {
                 this.$router.push('/');

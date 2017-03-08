@@ -1,8 +1,5 @@
 <template>
-    <div>
-        <button @click="getPosts()" class="btn btn-default">
-        Get Posts
-        </button>
+    <div class="container">
         <ul class="list-group">
             
             <li v-for="(post,index) in posts" class="list-group-item">
@@ -71,6 +68,9 @@
                 }
             }
 	    },
+        beforeMount() {
+            this.getPosts();
+        }
     }
 </script>
 

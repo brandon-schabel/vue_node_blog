@@ -120,7 +120,7 @@ var port = process.env.PORT || 3001;
 \**************************/
 
 
-// XXX: This should be a database of users :).
+
 var users = user_collection
 
 function createToken(user) {

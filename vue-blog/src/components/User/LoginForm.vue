@@ -47,6 +47,8 @@
                 .then(function (response) {
                     console.log(response);
                     window.sessionStorage.accessToken = response.data.id_token
+                    //navigate to home
+                    vm.$router.push('/');
                 })
                 .catch(function (error) {
                     console.log(error);
