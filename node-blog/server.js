@@ -13,7 +13,8 @@ var logger          = require('morgan'),
     config          = require('./config'),
     dbconfig        = require('./dbconfig'),
     jwt             = require('jsonwebtoken'),
-    jwtChecker      = require('express-jwt')
+    jwtChecker      = require('express-jwt'),
+    jwtDecode       = require('jwt-decode')
 
 var db,
     post_collection,
@@ -53,7 +54,8 @@ var jwtCheck = jwtChecker({
   getToken:
     function fromHeaderOrQuerystring (req) {
         if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
-            return req.headers.Authorization.split(' ')[1];
+            console.log(req.headers.authorization.split(' ')[1])
+            return req.headers.authorization.split(' ')[1];
         } else if (req.query && req.query.token) {
         return req.query.token;
         }
@@ -63,12 +65,14 @@ var jwtCheck = jwtChecker({
 
 app.use('/api/protected', jwtCheck);
 
-
-//add protection
 app.post('/api/protected/newPost', (req, res) => {
-  
-  console.log(req)
-  post_collection.save(req.body, (err,result)=> {
+  var currentDateTime = new Date();
+  var post = req.body;
+  post.time = currentDateTime
+
+  console.log(post)
+  console.log(req.body)
+  post_collection.save(post, (err,result)=> {
     if (err) return console.log(err)
     console.log('saved to database')
     res.send("Success");
@@ -80,32 +84,49 @@ app.post('/api/protected/newPost', (req, res) => {
 })
 
 app.post('/api/protected/deletePost', (req, res) => {
-  //convert submit string id to ObjectID
-  deleteId = new MongoClient.ObjectID(req.body.deleteId);
-  console.log(req.headers)
-  //deleteId = new MongoClient.ObjectID(req.params.id);
-  console.log(deleteId);
-
-
-  post_collection.deleteOne({'_id':deleteId}, (err, result) => {
-    console.log(result);
-    if(err) console.log(err);
-    console.log("Success");
-    //assert.equal(null, err);
-    //assert.equal(1, result.deletedCount);
-    //assert.equal is causing errors for me
-  });
+    console.log(req.headers);
+    console.log(req.headers.authorization.split(' ')[1]);
+    var token = req.headers.authorization.split(' ')[1];
+    
+    var decoded = jwtDecode(token);
+    console.log(decoded);
+    //console.log(req.headers.authorization);
+    //console.log(req.headers)
+    //console.log(req.body);
+    post_collection.remove({_id:MongoClient.ObjectID(req.body.id)}, (err, result) => {
+        //console.log(result);
+        if(err) console.log(err);
+        console.log("Success");
+    });
 });
 
-app.get('/getposts', (req, res) => {
-  post_collection.find().toArray((err, result) => {
-    if (err) return console.log(err)
+app.post('/api/protected/profile', (req, res) => {
+    console.log(req.headers);
+    console.log(req.headers.authorization.split(' ')[1]);
+    var token = req.headers.authorization.split(' ')[1];
     
-    // renders index.ejs
-    //console.log(result)
-    res.send(result)
-  })
+    var decoded = jwtDecode(token);
+    console.log(decoded);
+
+    user_collection.findOne({email: decoded.email, username: decoded.username}, (err, result) => {
+        if (err) {
+            console.log(err);
+        }else {
+            res.send({email: decoded.email, username: decoded.username})
+        }
+    })
 })
+
+app.get('/getposts', (req, res) => {
+    //console.log(req);
+    post_collection.find().toArray((err, result) => {
+        if (err) return console.log(err)
+        
+        // renders index.ejs
+        //console.log(result)
+        res.send(result);
+    });
+});
 
 if (process.env.NODE_ENV === 'development') {
   app.use(logger('dev'));
@@ -234,7 +255,9 @@ app.post('/login', function(req, res) {
             if(err) console.log(err)
             if(res) {
                 serverRes.status(201).send({
-                    id_token: createToken(user)
+                    id_token: createToken(user),
+                    email: user.email,
+                    username: user.username,
                 });
             } else {
                 return serverRes.status(401).send("The username or password don't match")

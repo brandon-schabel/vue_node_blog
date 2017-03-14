@@ -35,13 +35,16 @@
     export default {
         data() {
             return {
-                posts: [] 
+                posts: [],
+                jwtAuthHeader: { headers: { Authorization: 'Bearer ' + window.sessionStorage.accessToken}}
             };
         },
         methods: {
 
             getPosts() {
                 var vm = this
+                //var tokenData = jwt_decode(window.sessionStorage.accessToken);
+                //console.log(tokenData)
                 this.axios.get('http://127.0.0.1:3000/getposts')
                 .then(function (response) {
                     console.log(response);
@@ -51,12 +54,11 @@
                 });
             },
             deletePost(id,index) {
+                var vm = this
                 const url = 'http://127.0.0.1:3000/api/protected/deletePost';
                 const params = {id:id}
-                const config = { headers: {
-                    Authorization: 'Bearer ' + window.sessionStorage.accessToken
-                }}
-                console.log(window.sessionStorage.accessToken);
+                const config = this.jwtAuthHeader
+                console.log(config);
                 this.axios.post(url, params, config)
                 .then(function (response) {
                     console.log(response);
