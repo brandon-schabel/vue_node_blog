@@ -23,6 +23,7 @@
                     <li><a href="/viewpost">All Posts</a></li>
                     <li><a href="/newpost">New Post</a></li>
                     <li><a href="">User Posts</a></li>
+                    <li><router-link to="/userProfile">Profile</router-link></li>
                     <li><a href="">Logout</a></li>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->

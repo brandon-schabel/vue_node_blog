@@ -7,7 +7,7 @@ import NewPost from './components/Post/NewPost.vue'
 export const routes = [
     {path: '/',  component: AllPosts},
     {path: '/login', component: LoginForm},
-    {path: '/user/:id', component: UserProfile},
+    {path: '/userProfile/', component: UserProfile},
     {path: '/viewpost', component: AllPosts},
     {path: '/register', component: RegisterForm},
     {path: '/newpost', component: NewPost}
