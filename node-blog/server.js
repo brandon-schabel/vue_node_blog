@@ -64,6 +64,7 @@ var jwtCheck = jwtChecker({
 });
 
 app.use('/api/protected', jwtCheck);
+/*
 app.use('/api/protected', function(req, res) {
     var tokenUse = ''
     if(req.headers.authorization) {
@@ -73,6 +74,7 @@ app.use('/api/protected', function(req, res) {
         console.log("No token found")
     }
 })
+*/
 
 app.post('/api/protected/newPost', (req, res) => {
   var currentDateTime = new Date();
@@ -121,7 +123,7 @@ app.post('/api/protected/profile', (req, res) => {
         if (err) {
             console.log(err);
         }else {
-            res.send({email: decoded.email, username: decoded.username})
+           res.status(201).send(result);
         }
     })
 })
@@ -130,17 +132,19 @@ app.post('/api/protected/updateProfile', (req, res) => {
     console.log(req.body);
     console.log(req.headers);
     console.log(req.headers.authorization.split(' ')[1]);
+
     var userDataUpdate = req.body;
     var token = req.headers.authorization.split(' ')[1];
     var decoded = jwtDecode(token);
 
     console.log(decoded);
 
-    user_collection.update ({email: decoded.email, username: decoded.username},{$set: { userDataUpdate}}, (err, result) => {
+    
+    user_collection.update ({email: decoded.email, username: decoded.username},{$set: {profileData: req.body} }, (err, result) => {
         if (err) {
             console.log(err);
         }else {
-            console.log(result);
+            res.status(201).send("Profile successfully updated.")
         }
     })
 })

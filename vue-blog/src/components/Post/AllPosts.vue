@@ -1,26 +1,26 @@
 <template>
-    <div class="container">
+    <div class="container blog-border">
         <ul class="list-group">
             
             <li v-for="(post,index) in posts" class="list-group-item">
                 <div class="row">
                     <div class="col-xs-3">
                         <h1>
-                        Title: {{post.postTitle}}
+                        {{post.postTitle}}
                         </h1>
                     </div>
                     <div class="col-xs-6">
-                        Content: {{post.postContent}}
+                        {{post.postContent}}
                     </div>
                     <div class="col-xs-3">
-                        <h3>User: {{post.username}}</h3>
+                        <h3>Posted by {{post.username}}</h3>
 
                         <div v-if="post.created_datetime">
-                            Posted on: {{post.createdDatetime}}
+                            Posted on {{post.createdDatetime}}
                         </div>
                         <div>
-                            id: {{post._id}}
-                            <button @click="deletePost(post._id, index)" class="btn btn-default">
+                            
+                            <button @click="deletePost(post._id, index)" class="btn btn-default btn-post right-align btn-warning">
                                 Delete
                             </button>
                         </div>
