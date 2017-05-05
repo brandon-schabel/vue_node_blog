@@ -14,7 +14,8 @@
     "jwt-decode": "^2.1.0",
     "vue": "^2.0.1",
     "vue-axios": "^1.2.2",
-    "vue-resource": "^1.2.0"
+    "vue-resource": "^1.2.0",
+    "vue-router": "^2.5.3"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",

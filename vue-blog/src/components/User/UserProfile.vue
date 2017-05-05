@@ -13,7 +13,7 @@
             class="form-control"
             v-model="userData.profileData.hobbies">
 
-        <h3>About Me  {{userData.profileData.aboutMe}}<h3>
+        <h3>About Me  {{userData.profileData.aboutMe}}</h3>
         <input
             type="text"
             id="aboutMe"

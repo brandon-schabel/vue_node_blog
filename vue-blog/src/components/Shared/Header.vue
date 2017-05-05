@@ -15,16 +15,17 @@
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li><router-link to="/">Home</router-link></li>
-                    <li><router-link to="/login">Login</router-link></li>
-                    <!--<li><router-link to="/user/10">User</router-link>-->
-                    <li><a href="/register">Register</a></li>
-                    <li><a href="/viewpost">All Posts</a></li>
-                    <li><a href="/newpost">New Post</a></li>
-                    <li><a href="">User Posts</a></li>
-                    <li><router-link to="/userProfile">Profile</router-link></li>
-                    <li><a href="">Logout</a></li>
+                    <ul class="nav navbar-nav">
+                        <li><router-link to="/">Home</router-link></li>
+                        <li><router-link to="/login">Login</router-link></li>
+                        <!--<li><router-link to="/user/10">User</router-link>-->
+                        <li><a href="/register">Register</a></li>
+                        <li><a href="/viewpost">All Posts</a></li>
+                        <li><a href="/newpost">New Post</a></li>
+                        <li><a href="">User Posts</a></li>
+                        <li><router-link to="/userProfile">Profile</router-link></li>
+                        <li><a href="">Logout</a></li>
+                    </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>

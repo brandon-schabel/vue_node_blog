@@ -45,7 +45,7 @@
                 var vm = this
                 //var tokenData = jwt_decode(window.sessionStorage.accessToken);
                 //console.log(tokenData)
-                this.axios.get('http://127.0.0.1:3000/getposts')
+                this.axios.get('http://127.0.0.1:3000/api/getposts')
                 .then(function (response) {
                     console.log(response);
                     vm.posts = response.data;

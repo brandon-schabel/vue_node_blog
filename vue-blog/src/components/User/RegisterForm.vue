@@ -76,7 +76,7 @@
             submitRegistration() {
                 var vm = this
                 console.log(this.registrationData)
-                this.axios.post('http://127.0.0.1:3000/register',vm.registrationData)
+                this.axios.post('http://127.0.0.1:3000/auth/register',vm.registrationData)
                     //postTitle: vm.postData.postTitle,
                     //postContent: vm.postData.postContent)
                 .then(function (response) {

@@ -41,7 +41,7 @@
             submitLogin() {
                 var vm = this
                 console.log(this.userData)
-                this.axios.post('http://127.0.0.1:3000/login',vm.userData)
+                this.axios.post('http://127.0.0.1:3000/auth/login',vm.userData)
                     //postTitle: vm.postData.postTitle,
                     //postContent: vm.postData.postContent)
                 .then(function (response) {

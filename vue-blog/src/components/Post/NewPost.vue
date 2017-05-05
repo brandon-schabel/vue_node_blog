@@ -76,7 +76,7 @@
             },*/
             createPost() {
                 var vm = this
-                this.axios.post('http://127.0.0.1:3000/newPost',vm.postData, 
+                this.axios.post('http://127.0.0.1:3000/api/protected/newPost',vm.postData, 
                  {
        'Content-Type': 'application/json'})
                     //postTitle: vm.postData.postTitle,
