@@ -1,11 +1,41 @@
 var express = require('express'),
     jwt = require('jsonwebtoken'),
     jwtChecker = require('express-jwt'),
-    config = require('./config')
+    config = require('./config'),
+    bodyParser = require('body-parser'),
+    cors = require('cors'),
+    http = require('http'),
+    jwtDecode = require('jwt-decode'),
+    MongoClient = require('mongodb')
+
+
 var router = express.Router()
 
-var jwtCheck = jwtChecker({
+
+router.use(bodyParser.urlencoded({ extended: true }));
+router.use(bodyParser.json());
+router.use(cors());
+
+/*
+var allowCrossDomain = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+    // intercept OPTIONS method
+    if ('OPTIONS' == req.method) {
+        res.sendStatus(200);
+    } else {
+        next();
+    }
+};
+
+router.use(allowCrossDomain);
+*/
+
+//var jwtCheck =
+router.use(jwtChecker({
     secret: config.secret,
+
     getToken: function fromHeaderOrQuerystring(req) {
         if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
             console.log(req.headers.authorization.split(' ')[1])
@@ -15,47 +45,40 @@ var jwtCheck = jwtChecker({
         }
         return null;
     }
-});
-
-/*
-app.use('/api/protected', function(req, res) {
-    var tokenUse = ''
-    if(req.headers.authorization) {
-        tokenUse = req.headers.authorization.split(' ')[1];
-        console.log("tokenUse " + tokenUse);
-    } else {
-        console.log("No token found")
-    }
-})
-*/
+}));
 
 //if this was in the main app we'd define the route and tell it which function we want to use,
 //instead we tell it which function and then later choose the route in the main server file
 //app.use('/api/protected', jwtCheck);
-router.use(jwtCheck);
+
 
 
 router.post('/newPost', (req, res) => {
+    post_collection = req.app.locals.post_collection;
+    //console.log(req.headers.authorization)
+
+    //console.log(req);
     var currentDateTime = new Date();
     var post = req.body;
     post.time = currentDateTime
 
     //console.log(post)
-    //console.log(req.body)
+    //console.log(req.body) 
     post_collection.save(post, (err, result) => {
-            if (err) return console.log(err)
-            console.log('saved to database')
-            res.send("Success");
-            //res.redirect('/')
-        })
-        //req.body is handle by bodyParser
-        //console.log(req.body)
-        //console.log('Hellooooooooooooooooo!')
-})
+        if (err) return console.log(err)
+        console.log('saved to database')
+        res.send("Success");
+        //res.redirect('/')
+    });
+    //req.body is handle by bodyParser
+    //console.log(req.body)
+    //console.log('Hellooooooooooooooooo!')
+});
 
 router.post('/deletePost', (req, res) => {
-    console.log(req.headers);
-    console.log(req.headers.authorization.split(' ')[1]);
+    console.log(req.user);
+    //console.log(req.headers);
+    //console.log(req.headers.authorization.split(' ')[1]);
     var token = req.headers.authorization.split(' ')[1];
 
     var decoded = jwtDecode(token);

@@ -130,6 +130,7 @@ router.post('/login', function(req, res) {
                     email: user.email,
                     username: user.username,
                 });
+                //console.log(id_token)
             } else {
                 return serverRes.status(401).send("The username or password don't match")
             }

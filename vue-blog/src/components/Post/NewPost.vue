@@ -34,11 +34,12 @@
                     
                 </div>
             </div>
-        </form>
-        <button
+            <button
                 class="btn btn-primary" v-on:click="createPost()"
                 >Submit!
         </button>
+        </form>
+        
         <hr>
         <div class="row">
             <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
@@ -59,7 +60,17 @@
 </template>
 
 <script>
+
     export default {
+        data() {
+            return {
+                posts: [],
+                postData:  {
+                    postTitle: '',
+                    postContent: ''
+                }
+            }
+        },
         methods: {
             /*postData() {     
 
@@ -76,11 +87,16 @@
             },*/
             createPost() {
                 var vm = this
-                this.axios.post('http://127.0.0.1:3000/api/protected/newPost',vm.postData, 
-                 {
-       'Content-Type': 'application/json'})
-                    //postTitle: vm.postData.postTitle,
-                    //postContent: vm.postData.postContent)
+
+                //const config = {headers: this.jwtAuthHeader}
+                console.log('Creating post')
+
+                var config = {  url: '/api/protected/newPost',
+                                method: 'post',
+                                data: vm.postData}
+
+                //this.axios.post('http://127.0.0.1:3000/api/newPost', vm.postData)
+                this.axios(config)
                 .then(function (response) {
                     console.log(response);
                 })
@@ -89,15 +105,7 @@
                 });
             }
         },
-        data() {
-            return {
-                posts: [],
-                postData:  {
-                    postTitle: '',
-                    postContent: ''
-                }
-            }
-        }
+        
     }
                 
 </script>
